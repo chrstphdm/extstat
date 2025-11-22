@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or Discussion
+    url: https://github.com/chrstphdm/extstat/discussions
+    about: Ask questions or discuss ideas
+  - name: Documentation
+    url: https://github.com/chrstphdm/extstat#readme
+    about: Read the documentation

@@ -1,0 +1,19 @@
+[package]
+name = "extstat"
+version = "0.1.0"
+edition = "2021"
+authors = ["Christophe Demay <christophe.demay@starfishbio.com>"]
+description = "Fast disk usage analyzer that groups files by extension"
+repository = "https://github.com/chrstphdm/extstat"
+license = "MIT"
+keywords = ["cli", "disk-usage", "file-management", "parallel", "terminal"]
+categories = ["command-line-utilities", "filesystem"]
+readme = "README.md"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+walkdir = "2.5"
+rayon = "1.10"
+comfy-table = "7.1"
+humansize = "2.1"
+anyhow = "1.0"

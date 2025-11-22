@@ -1,0 +1,190 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                      📦 extstat v0.1.0                           ║
+║          Disk Usage Analyzer by File Extension (Rust)           ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📁 PROJECT STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+extstat/
+├── 📖 SUMMARY.md              ← COMMENCE ICI ! Vue d'ensemble
+├── 🚀 QUICKSTART.md           Guide installation & premiers pas
+├── 🧬 BIOINFORMATICS.md       Cas d'usage bioinformatique
+├── 📚 README.md               Documentation complète
+│
+├── ⚙️  Cargo.toml              Configuration Rust & dépendances
+├── 🔨 build.sh                Script de compilation (chmod +x)
+├── 🧪 test.sh                 Tests avec fichiers d'exemple
+│
+├── 📂 src/
+│   └── 🦀 main.rs             Code source (330 lignes de Rust)
+│
+└── 🙈 .gitignore              Fichiers à ignorer (Git)
+
+
+⚡ QUICK START (3 commands)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. cd extstat
+2. ./build.sh
+3. ./target/release/extstat . -c -n 10
+
+
+📚 DOCUMENTATION ROADMAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣  SUMMARY.md
+    ↓ Vue d'ensemble du projet, features, next steps
+    
+2️⃣  QUICKSTART.md
+    ↓ Installation Rust, build, premiers tests
+    ↓ Comprendre le code (pour débutants Rust)
+    
+3️⃣  README.md
+    ↓ Documentation complète
+    ↓ Toutes les options CLI, exemples, troubleshooting
+    
+4️⃣  BIOINFORMATICS.md
+    ↓ Cas d'usage spécifiques STARFISH Bio
+    ↓ Exemples réels avec tes données
+    ↓ Scripts d'intégration
+    
+5️⃣  src/main.rs
+    ↓ Code source commenté
+    ↓ Modifier : couleurs, barres, tri
+
+
+✨ FEATURES v1
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Scan parallèle multi-core
+✅ Table colorée avec barres visuelles  
+✅ Statistiques : taille, count, pourcentages
+✅ Filtres : min size, top N
+✅ Format human-readable (GiB, MiB, etc.)
+✅ Gestion des fichiers sans extension
+✅ Performance : ~500k fichiers/sec
+
+
+🎯 USAGE EXAMPLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Simple
+extstat /path/to/dir
+
+# Avec stats détaillées
+extstat /HDD/dadourlou -c -n 30
+
+# Ignorer petits fichiers (< 1MB)
+extstat . -s 1048576
+
+# Top 10 seulement
+extstat . -n 10
+
+# Combiner tout
+extstat /data -c -s 10000000 -n 20
+
+
+🔧 CUSTOMIZATION QUICK REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+src/main.rs:
+  - Ligne ~120  : Couleurs du tableau (Green, Yellow, Cyan)
+  - Ligne ~170  : Largeur barres visuelles (bar_width = 30)
+  - Ligne ~90   : Ordre de tri (par taille ou par count)
+  - Ligne ~175  : Caractères barres (█ et ░)
+
+
+🚀 NEXT STEPS (Version 2)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Facile (1-2h):
+  □ Progress bar pendant scan
+  □ Export CSV/JSON
+  □ --exclude patterns
+
+Moyen (3-4h):
+  □ Filter by date (--newer-than, --older-than)
+  □ Compare mode (avant/après cleanup)
+  □ Verbose mode (erreurs détaillées)
+
+Avancé (6-8h):
+  □ TUI interactif (comme ncdu)
+  □ Drill-down par extension → répertoires
+  □ Graphiques distribution
+
+
+📦 DEPENDENCIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+clap 4.5        → CLI argument parsing
+walkdir 2.5     → Directory traversal
+rayon 1.10      → Data parallelism
+comfy-table 7.1 → Beautiful tables
+humansize 2.1   → Size formatting (GiB, MiB)
+anyhow 1.0      → Error handling
+
+
+💻 TECH STACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Language:   Rust 2021 edition
+Build:      Cargo (Rust package manager)
+Target:     Linux/Unix terminals
+Binary:     Single executable, no runtime deps
+Size:       ~2-3 MB (release build)
+
+
+🎓 LEARNING PATH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Débutant Rust:
+  1. Lis QUICKSTART.md section "Comprendre le code"
+  2. Modifie les couleurs et largeur barres
+  3. Change l'ordre de tri
+  4. Teste avec ./test.sh
+
+Intermédiaire:
+  1. Ajoute une option CLI (ex: --sort-by count)
+  2. Implémente export CSV simple
+  3. Ajoute filtrage par pattern
+
+Avancé:
+  1. Mode interactif avec ratatui
+  2. Drill-down par extension
+  3. Compare mode
+
+
+❓ FAQ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Q: Rust est installé comment ?
+A: curl https://sh.rustup.rs -sSf | sh
+
+Q: Build prend combien de temps ?
+A: 1ère fois ~1-2 min (télécharge deps), puis ~10-30s
+
+Q: Différence cargo build vs --release ?
+A: release = optimisé (plus rapide), debug = compile vite
+
+Q: Comment débugger ?
+A: Ajoute println!("debug: {:?}", variable); puis cargo run
+
+Q: Ça marche sur mon cluster ?
+A: Oui ! Copie juste le binaire target/release/extstat
+
+
+📞 SUPPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Lis la doc appropriée (voir roadmap ci-dessus)
+2. Teste avec ./test.sh
+3. Demande-moi si besoin !
+
+
+🎉 Let's Go!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+cd extstat && ./build.sh && ./target/release/extstat . -c
+
+Happy coding! 🦀✨
