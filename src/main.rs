@@ -65,7 +65,7 @@ fn main() -> Result<()> {
             Some((extension, size))
         })
         .fold(
-            || HashMap::new(),
+            HashMap::new,
             |mut acc, (ext, size)| {
                 let entry = acc.entry(ext).or_insert((0, 0));
                 entry.0 += size;
@@ -74,7 +74,7 @@ fn main() -> Result<()> {
             },
         )
         .reduce(
-            || HashMap::new(),
+            HashMap::new,
             |mut acc, map| {
                 for (ext, (size, count)) in map {
                     let entry = acc.entry(ext).or_insert((0, 0));
@@ -114,12 +114,7 @@ fn get_extension(path: &Path) -> String {
         .unwrap_or_else(|| "[no extension]".to_string())
 }
 
-fn display_results(
-    stats: &[ExtensionStats],
-    total_size: u64,
-    total_files: usize,
-    args: &Args,
-) {
+fn display_results(stats: &[ExtensionStats], total_size: u64, total_files: usize, args: &Args) {
     let mut table = Table::new();
     table
         .load_preset(UTF8_FULL)
@@ -172,18 +167,11 @@ fn display_results(
 
     // Summary
     println!("\n📈 Summary:");
-    println!(
-        "   Total size:       {}",
-        format_size(total_size, BINARY)
-    );
+    println!("   Total size:       {}", format_size(total_size, BINARY));
     println!("   Total files:      {}", total_files);
     println!("   Extensions found: {}", stats.len());
     if stats.len() > display_count {
-        println!(
-            "   (Showing top {} out of {})",
-            display_count,
-            stats.len()
-        );
+        println!("   (Showing top {} out of {})", display_count, stats.len());
     }
 }
 
@@ -192,9 +180,5 @@ fn create_bar(percentage: f64) -> String {
     let filled = ((percentage / 100.0) * bar_width as f64) as usize;
     let empty = bar_width - filled;
 
-    format!(
-        "{}{}",
-        "█".repeat(filled),
-        "░".repeat(empty)
-    )
+    format!("{}{}", "█".repeat(filled), "░".repeat(empty))
 }
